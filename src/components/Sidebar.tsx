@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Clapperboard, CheckCircle2, CalendarDays, Library, Shapes, Search } from 'lucide-react';
+import { Home, Clapperboard, CheckCircle2, CalendarDays, Library, Search } from 'lucide-react';
 import NavItem from './NavItem'; // Kita tetap pakai NavItem yang sudah di-upgrade
 
 // Definisikan item navigasi

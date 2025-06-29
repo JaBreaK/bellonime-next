@@ -1,9 +1,8 @@
 // src/app/batch/[batchId]/page.tsx (Versi Anti Error)
 
 import Image from "next/image";
-import Link from "next/link";
 import batchInfoService from "@/services/batchInfoService";
-import type { Format, GenreLinkCard } from "@/types";
+import type {  GenreLinkCard } from "@/types";
 import DownloadSection from '@/components/DownloadSection'; // <-- Import komponen baru
 
 interface PageProps {

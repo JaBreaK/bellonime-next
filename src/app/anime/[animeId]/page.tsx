@@ -6,13 +6,9 @@ import animeInfoService from "@/services/animeInfoService";
 import type { EpisodeLinkCard, GenreLinkCard } from "@/types";
 import { Download, Star } from "lucide-react";
 
-interface PageProps {
-  params: {
-    animeId: string;
-  };
-}
 
-export default async function AnimeDetailPage({ params }: PageProps) {
+
+export default async function AnimeDetailPage({ params }: { params: { animeId: string } }) {
   const { data: anime, ok } = await animeInfoService(params);
 
   if (!ok || !anime) {

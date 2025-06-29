@@ -1,5 +1,5 @@
 import type { Format, Quality } from '@/types';
-import { Download, Layers } from 'lucide-react'; // Menambahkan ikon untuk visual
+import {  Layers } from 'lucide-react'; // Menambahkan ikon untuk visual
 
 interface DownloadSectionProps {
   downloadUrl: {
