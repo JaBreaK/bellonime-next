@@ -1,8 +1,3 @@
-// src/configs/animeConfig.ts (Versi Next.js)
-
-// HAPUS BARIS INI:
-// import { API_URL } from "astro:env/server";
-
 interface AnimeConfig {
   bellonime: {
     siteName: string;
