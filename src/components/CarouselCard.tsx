@@ -11,14 +11,11 @@ interface CarouselCardProps {
   anime: Anime;
 }
 
-const getFirstParagraph = (text?: string): string => {
-  if (!text) return 'Sinopsis tidak tersedia.';
-  return text.replace(/<br\s*\/?>/gi, '\n').split('\n\n')[0];
-};
+
 
 
 export default function CarouselCard({ anime }: CarouselCardProps) {
-  const synopsisPreview = getFirstParagraph(anime.synopsis);
+ 
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-black">
@@ -55,9 +52,7 @@ export default function CarouselCard({ anime }: CarouselCardProps) {
               {anime.title}
             </h2>
 
-            <p className="mt-3 text-sm text-neutral-200 line-clamp-2 md:line-clamp-3 max-w-prose">
-              {synopsisPreview}
-            </p>
+
             
             <Link 
               href={`/anime/${anime.animeId}`} 

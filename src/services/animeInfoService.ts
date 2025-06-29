@@ -9,7 +9,10 @@ import type {
 interface AnimeDetails {
   title: string;
   poster: string;
-  score: { value: string; users: string };
+  score: {
+    value: string;
+    users: string;
+  };
   japanese: string;
   synonyms: string;
   english: string;
@@ -23,11 +26,15 @@ interface AnimeDetails {
   producers: string;
   aired: string;
   trailer: string;
-  batchList: BatchLinkCard[];
+  batchList: BatchLinkCard[]; // ← daftar batch jika ada beberapa
+  batch?: {
+    batchId: string;
+  }; // ← batch tunggal opsional (untuk button download)
   synopsis: Synopsis;
   genreList: GenreLinkCard[];
   episodeList: EpisodeLinkCard[];
 }
+
 
 
 // Sesudah

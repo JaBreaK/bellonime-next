@@ -43,14 +43,27 @@ export interface AnimeCard3 {
 export interface AnimeCard4 {
   title: string;
   poster: string;
-  type: string;
-  score: string;
-  estimation: string;
-  animeId: string;
+  releaseDate: string;
+  episodeId: string;
   href?: string;
   samehadakuUrl?: string;
-  genres: string;
+  status: string;
+  type: string;
+  description: string;
+  score: string;
+  animeId?: string;
+  batchId?: string;
+  batchList?: string;
+  genreList: GenreLinkCard[];
 }
+
+export type Schedule = {
+  days: {
+    day: string;
+    animeList: AnimeCard4[];
+  }[];
+};
+
 
 export interface AnimeCard5 {
   title: string;
@@ -59,14 +72,31 @@ export interface AnimeCard5 {
   episodeId: string;
   href?: string;
   samehadakuUrl?: string;
+  status: string;
+  type: string;
+  description: string;
+  score: string;
+  animeId?: string;
+  batchId?: string;
+  batchList?: string;
+  genreList: GenreLinkCard[];
 }
 
 export interface AnimeCard6 {
   title: string;
   poster: string;
-  animeId: string;
+  releaseDate: string;
+  episodeId: string;
   href?: string;
   samehadakuUrl?: string;
+  status: string;
+  type: string;
+  description: string;
+  score: string;
+  animeId?: string;
+  batchId?: string;
+  batchList?: string;
+  genreList: GenreLinkCard[];
 }
 
 export interface LinkCard {

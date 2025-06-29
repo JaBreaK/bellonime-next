@@ -10,7 +10,7 @@ export interface Home {
   completed: {
     href?: string;
     otakudesuUrl?: string;
-    batchList: AnimeCard1[];
+    animeList: AnimeCard1[];
   };
   movie: {
     href?: string;
