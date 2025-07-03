@@ -4,12 +4,54 @@ import episodeService from '@/services/episodeService';
 import VideoPlayer from '@/components/VideoPlayer';
 import { ArrowLeft, ArrowRight, Download } from 'lucide-react';
 import DownloadSection from '@/components/DownloadSection';
+import type { Metadata } from 'next';
 
 interface PageProps {
   params: {
     episodeId: string;
   };
 }
+
+// --- TAMBAHKAN FUNGSI SEO INI ---
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { episodeId } = params;
+  const { data: episode } = await episodeService({ episodeId });
+
+  if (!episode) {
+    return {
+      title: 'Episode Tidak Ditemukan',
+    };
+  }
+
+  // Ambil sinopsis paragraf pertama, atau sediakan deskripsi default
+  const description = episode.synopsis?.paragraphs?.[0] || `Nonton ${episode.title} subtitle indonesia gratis di Bellonime.`;
+
+  return {
+    title: `${episode.title} | Bellonime`,
+    description: description,
+    openGraph: {
+      title: `${episode.title} | Bellonime`,
+      description: description,
+      images: [
+        {
+          url: episode.poster, // Gunakan poster anime sebagai gambar preview
+          width: 800,
+          height: 1200,
+          alt: `Poster ${episode.title}`,
+        },
+      ],
+      locale: 'id_ID',
+      type: 'video.episode', // Tipe spesifik untuk episode video
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${episode.title} | Bellonime`,
+      description: description,
+      images: [episode.poster],
+    },
+  };
+}
+// -----------------------------------
 
 export default async function WatchPage({ params }: PageProps) {
   const { data: episode, ok } = await episodeService({ episodeId: params.episodeId });
