@@ -2,9 +2,24 @@
 
 import homeService from '@/services/homeService';
 import AnimeCard from "@/components/AnimeCard";
+
 import Carousel from '@/components/Carousel';
 import SectionHeader from '@/components/SectionHeader'; // <-- Import komponen baru
 import type { Anime } from '@/types'; // <-- Import tipe Anime
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Bellonime - Nonton Anime Sub Indo Gratis & Terlengkap',
+  description: 'Website nonton anime subtitle indonesia gratis dengan koleksi terlengkap dan update setiap hari. Streaming anime dengan kualitas HD tanpa iklan.',
+  keywords: ['nonton anime', 'anime sub indo', 'streaming anime', 'bellonime', 'anime gratis'],
+  openGraph: {
+    title: 'Bellonime - Nonton Anime Sub Indo Gratis & Terlengkap',
+    description: 'Streaming anime dengan kualitas HD tanpa iklan.',
+    // Sediakan gambar default untuk homepage
+    images: ['/images/bellonime.png'], // Pastikan gambar ini ada di folder /public/images/
+  },
+};
 
 export default async function HomePage() {
   const { data: homeData, ok } = await homeService();

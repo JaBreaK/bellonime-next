@@ -2,10 +2,58 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from 'next';
 import animeInfoService from "@/services/animeInfoService";
 import type { EpisodeLinkCard, GenreLinkCard } from "@/types";
 import { Download, Star } from "lucide-react";
 
+
+// Komponen PageProps perlu diexport atau didefinisikan di sini agar bisa dipakai generateMetadata
+interface PageProps {
+  params: { animeId: string };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  // 1. Ambil ID dari URL
+  const { animeId } = params;
+
+  // 2. Panggil service untuk fetch data anime spesifik
+  const { data: anime } = await animeInfoService({ animeId });
+
+  // Jika anime tidak ditemukan, berikan metadata default
+  if (!anime) {
+    return {
+      title: 'Anime Tidak Ditemukan',
+    };
+  }
+
+  // 3. Buat dan kembalikan object metadata
+  return {
+    title: `${anime.title} - Bellonime`,
+    description: anime.synopsis.paragraphs[0], // Ambil paragraf pertama sinopsis
+    keywords: ['nonton anime', anime.title, 'anime sub indo', ...anime.genreList.map(g => g.title)],
+    openGraph: {
+      title: `${anime.title} - Bellonime`,
+      description: anime.synopsis.paragraphs[0],
+      images: [
+        {
+          url: anime.poster,
+          width: 800,
+          height: 1200,
+          alt: `Poster ${anime.title}`,
+        },
+      ],
+      locale: 'id_ID',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${anime.title} - Bellonime`,
+      description: anime.synopsis.paragraphs[0],
+      images: [anime.poster],
+    },
+  };
+}
 
 
 export default async function AnimeDetailPage({ params }: { params: { animeId: string } }) {

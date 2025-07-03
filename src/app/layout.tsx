@@ -20,6 +20,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Bellonime - Experience Anime Streaming',
   description: 'Website nonton anime subtitle indonesia dengan UI/UX terbaik.',
+    verification: {
+    google: 'O4dWbm7nlHbWNU0LkBKPZ8QOkL0Ncc_-8Cp_g_41rgQ', // <-- KODE LO MASUK DI SINI
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {

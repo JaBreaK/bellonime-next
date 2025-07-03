@@ -5,6 +5,44 @@ import PaginationControls from '@/components/PaginationControls';
 import AnimatedGrid from '@/components/AnimatedGrid';
 import type { AnimeCard2 } from '@/types';
 
+
+import type { Metadata } from 'next';
+
+
+// FUNGSI SEO UNTUK HALAMAN ONGOING
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const page = searchParams.page || '1';
+  const pageTitleSuffix = page && page !== '1' ? ` - Halaman ${page}` : '';
+
+  const title = `Anime Completed${pageTitleSuffix} | Bellonime`;
+  const description = `Daftar anime completed yang sedang tayang (ongoing) musim ini, diupdate setiap hari di Bellonime. Halaman ${page}.`;
+
+  return {
+    title,
+    description,
+    // Canonical URL penting untuk pagination SEO
+    // Ini memberitahu Google bahwa halaman utama untuk konten ini adalah /ongoing
+    alternates: {
+      canonical: `/completed`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/completed?page=${page}`,
+      siteName: 'Bellonime',
+      images: [
+        {
+          url: '/images/bellonime.png', // Buat gambar default untuk halaman ongoing
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: 'id_ID',
+      type: 'website',
+    },
+  };
+}
+
 interface PageProps {
   searchParams: { page?: string };
 }
