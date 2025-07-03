@@ -11,6 +11,14 @@ export interface AnimeCard1 {
   samehadakuUrl?: string;
 }
 
+export interface AllAnimes {
+  list: {
+    startWith: string;
+    animeList: AnimeLinkCard[];
+  }[];
+}
+
+
 export interface AnimeCard2 {
   title: string;
   poster: string;
