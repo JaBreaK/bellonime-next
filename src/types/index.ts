@@ -191,22 +191,23 @@ export interface AnimeEpisode {
   title: string;
   animeId: string;
   poster: string;
-  releasedOn: string;
+  releaseTime: string;
   defaultStreamingUrl: string;
-  server: { qualities: Quality[] }; // Pastikan tipe Quality juga di-export
   hasPrevEpisode: boolean;
-  prevEpisode: NavEpisodeLinkCard | null; // Pastikan tipe NavEpisodeLinkCard juga di-export
+  prevEpisode: NavEpisodeLinkCard | null;
   hasNextEpisode: boolean;
   nextEpisode: NavEpisodeLinkCard | null;
-  downloadUrl: { formats: Format[] }; // Pastikan tipe Format juga di-export
-  synopsis: Synopsis; // Pastikan tipe Synopsis juga di-export
-  genreList: GenreLinkCard[]; // Pastikan tipe GenreLinkCard juga di-export
-  recommendedEpisodeList: AnimeCard5[]; // Pastikan tipe AnimeCard5 juga di-export
-  movie: {
-    href?: string;
-    samehadakuUrl?: string;
-    animeList: AnimeCard5[];
-  }
+  server: { qualities: Quality[] };
+  downloadUrl: { qualities: Quality[] }; // <-- Di data episode isinya 'qualities'
+  synopsis: Synopsis;
+  
+  // Ini bagian penting untuk daftar episode
+  info: {
+    genreList: GenreLinkCard[];
+    episodeList: EpisodeLinkCard[];
+  };
+
+  recommendedEpisodeList: AnimeCard5[];
 }
 
 export type Anime = AnimeCard1 | AnimeCard2 | AnimeCard3 | AnimeCard6;

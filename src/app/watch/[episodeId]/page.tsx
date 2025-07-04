@@ -5,6 +5,8 @@ import VideoPlayer from '@/components/VideoPlayer';
 import { ArrowLeft, ArrowRight, Download } from 'lucide-react';
 import DownloadSection from '@/components/DownloadSection';
 import type { Metadata } from 'next';
+import EpisodeListSidebar from '@/components/EpisodeListSidebar';
+import animeInfoService from '@/services/animeInfoService';
 
 interface PageProps {
   params: {
@@ -71,30 +73,31 @@ export default async function WatchPage({ params }: PageProps) {
     );
   }
 
-  const isVideoDataAvailable =
-    episode.server &&
-    Array.isArray(episode.server.qualities) &&
-    episode.server.qualities.length > 0;
-  const { prevEpisode, nextEpisode } = episode;
 
-  return (
-    <main className="max-w-4xl mx-auto px-4 py-6">
-      <h1 className="text-xl sm:text-2xl font-bold mb-4 truncate ">
-        {episode.title}
-      </h1>
+    
+  const { prevEpisode, nextEpisode, animeId, info,  title } = episode;
+  const episodeList = info.episodeList;
+  const animeTitle = title.split(' Episode')[0];
+  const { data: animeInfo,  } = await animeInfoService({ animeId: episode.animeId });
+  const { synopsis } = animeInfo || {}; // Ambil sinopsis dari animeInfo, beri fallback object kosong
 
-      <div className="space-y-4">
-        {isVideoDataAvailable ? (
+return (
+    <main className="container mx-auto px-4">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        {/* === KOLOM KIRI (Player, Judul, Info) === */}
+        <div className="lg:col-span-8 space-y-6">
+          
+          {/* 1. Player Video */}
           <VideoPlayer anime={episode} />
-        ) : (
-          <div className="aspect-video  flex justify-center items-center rounded-lg">
-            <p className="text-red-500">
-              Data video tidak tersedia untuk episode ini.
-            </p>
-          </div>
-        )}
 
-        <div className="flex flex-col sm:flex-row gap-3">
+          {/* 2. Judul Episode */}
+          <h1 className="font-display text-2xl sm:text-3xl font-bold text-foreground pt-2">
+            {title}
+          </h1>
+          
+          {/* Tombol Aksi */}
+          <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex flex-grow gap-3">
             {prevEpisode ? (
               <Link
@@ -132,6 +135,16 @@ export default async function WatchPage({ params }: PageProps) {
           </div>
         </div>
 
+
+                  <div className="bg-bg-off p-4 rounded-lg border border-border">
+            <Link href={`/anime/${animeId}`}>
+              <h2 className="font-display font-bold text-xl text-foreground hover:text-glow transition-colors">{animeTitle}</h2>
+            </Link>
+            <p className="text-sm text-dim mt-2 leading-relaxed">
+                {synopsis?.paragraphs?.join('\n\n')}
+            </p>
+          </div>
+
         {/* === Toggle Download Section dengan <details> === */}
         <details className="mt-4">
           <summary
@@ -144,6 +157,13 @@ export default async function WatchPage({ params }: PageProps) {
             <DownloadSection downloadUrl={episode.downloadUrl} />
           </div>
         </details>
+      </div>
+
+        {/* === KOLOM KANAN (Daftar Episode) === */}
+        <aside className="lg:col-span-4">
+          <EpisodeListSidebar episodes={episodeList} currentEpisodeId={params.episodeId} />
+        </aside>
+        
       </div>
     </main>
   );

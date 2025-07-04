@@ -51,7 +51,7 @@ export default async function HomePage() {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-8">
               {/* Tampilkan hanya 12 judul pertama */}
               {ongoingAnime.slice(0, 12).map((anime) => (
-                <AnimeCard key={anime.animeId} anime={anime as Anime} />
+                <AnimeCard key={anime.animeId} anime={anime as Anime} linkTo="latest-episode" />
               ))}
             </div>
           </section>

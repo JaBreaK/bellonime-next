@@ -63,7 +63,6 @@ export default function VideoPlayer({ anime }: VideoPlayerProps) {
 
   return (
     <div className="space-y-4">
-      <label htmlFor="server-select" className="block text-sm font-medium ">Pilih Server</label>
       <select id="server-select" onChange={handleServerChange} defaultValue={videoSrc} className="bg-zinc-700 border-zinc-600  text-sm rounded-lg  block w-full p-2.5">
         <option value={anime.defaultStreamingUrl}>Pilih Kualitas disini</option>
         {anime.server.qualities.map((quality) => 

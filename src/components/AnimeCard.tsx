@@ -1,20 +1,28 @@
-// src/components/AnimeCard.tsx
+// src/components/AnimeCard.tsx (Versi Final yang Sudah Diperbaiki)
 
 import Image from "next/image";
 import Link from "next/link";
-import type { AnimeCard1, AnimeCard3 } from "@/types";
+import type { Anime } from "@/types";
+
+type LinkType = 'detail' | 'latest-episode';
 
 interface AnimeCardProps {
-  anime: AnimeCard1 | AnimeCard3;
+  anime: Anime;
+  linkTo?: LinkType;
 }
 
-export default function AnimeCard({ anime }: AnimeCardProps) {
-  if (!anime.animeId) {
-    return null;
+export default function AnimeCard({ anime, linkTo = 'detail' }: AnimeCardProps) {
+  if (!anime || !anime.animeId) return null;
+
+  // --- INI BAGIAN YANG DIPERBAIKI ---
+  // Logika untuk menentukan tujuan link berdasarkan props `linkTo`
+  let href = `/anime/${anime.animeId}`; // Link default adalah ke halaman detail
+  if (linkTo === 'latest-episode') {
+    href = `/anime/${anime.animeId}/latest`; // Jika diminta, link ke 'URL Pintar' kita
   }
 
   return (
-    <Link href={`/anime/${anime.animeId}`} className="group block space-y-2.5">
+    <Link href={href} className="group relative block">
       {/* PERUBAHAN 1: Efek hover ditingkatkan dengan shadow & glow */}
       <div className="
         aspect-[2/3] relative overflow-hidden rounded-lg 

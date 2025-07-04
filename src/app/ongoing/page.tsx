@@ -5,7 +5,7 @@ import AnimeCard from '@/components/AnimeCard'; // Komponen kartu kita yang serb
 import PaginationControls from '@/components/PaginationControls';
 import AnimatedGrid from '@/components/AnimatedGrid';
 import type { AnimeCard2 } from '@/types';
-
+import type { Anime } from '@/types'; // <-- Import tipe Anime
 
 import type { Metadata } from 'next';
 
@@ -74,7 +74,7 @@ export default async function OngoingPage({ searchParams }: PageProps) {
       {/* GANTI DIV DENGAN INI */}
       <AnimatedGrid>
         {animeList.map((anime: AnimeCard2) => (
-          <AnimeCard key={anime.animeId} anime={anime} />
+          <AnimeCard key={anime.animeId} anime={anime as Anime} linkTo="latest-episode" />
         ))}
       </AnimatedGrid>
 
