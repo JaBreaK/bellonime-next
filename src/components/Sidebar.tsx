@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Home, Clapperboard, CheckCircle2, CalendarDays, Library, Tag, Search } from 'lucide-react';
 import NavItem from './NavItem'; // Kita tetap pakai NavItem yang sudah di-upgrade
-import Image from 'next/image';
+
 
 // Definisikan item navigasi
 const navItems = [
