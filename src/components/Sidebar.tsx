@@ -2,8 +2,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Clapperboard, CheckCircle2, CalendarDays, Library, Search } from 'lucide-react';
+import { Home, Clapperboard, CheckCircle2, CalendarDays, Library, Tag, Search } from 'lucide-react';
 import NavItem from './NavItem'; // Kita tetap pakai NavItem yang sudah di-upgrade
+import Image from 'next/image';
 
 // Definisikan item navigasi
 const navItems = [
@@ -12,6 +13,7 @@ const navItems = [
   { href: "/completed", label: "Completed", Icon: CheckCircle2 },
   { href: "/schedule", label: "Jadwal", Icon: CalendarDays },
   { href: "/anime", label: "Daftar Anime", Icon: Library },
+  { href: "/genres", label: "Genre", Icon: Tag },
 ];
 
 // Pisahkan search karena perilakunya beda di mobile
