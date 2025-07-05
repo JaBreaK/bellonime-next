@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Clapperboard, CheckCircle2, CalendarDays, Library, Tag, Search } from 'lucide-react';
+import { Home, Clapperboard, CheckCircle2, CalendarDays, Library, Tag, Github, Search } from 'lucide-react';
 import NavItem from './NavItem'; // Kita tetap pakai NavItem yang sudah di-upgrade
 
 
@@ -14,10 +14,13 @@ const navItems = [
   { href: "/schedule", label: "Jadwal", Icon: CalendarDays },
   { href: "/anime", label: "Daftar Anime", Icon: Library },
   { href: "/genres", label: "Genre", Icon: Tag },
+
 ];
 
 // Pisahkan search karena perilakunya beda di mobile
 const searchItem = { href: "/search", label: "Search", Icon: Search };
+const githubhItem = { href: "https://github.com/jabreak", label: "Github", Icon: Github, target: "_blank", rel: "noopener noreferrer" };
+// Jika ada item yang perlu ditambahkan, cukup tambahkan di array navItems
 
 export default function Sidebar() {
   return (
@@ -28,7 +31,7 @@ export default function Sidebar() {
           B
         </Link>
         <nav className="flex flex-col items-center gap-8">
-          {[...navItems, searchItem].map((item) => (
+          {[...navItems,githubhItem, searchItem].map((item) => (
             <NavItem key={item.href} {...item} />
           ))}
         </nav>
