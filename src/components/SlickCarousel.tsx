@@ -39,6 +39,7 @@ export default function SlickCarousel({ animes }: { animes: Anime[] }) {
     infinite: true,      // Kita aktifkan lagi loop biar lebih keren
     centerPadding: "60px", // Jarak untuk 'ngintip' slide di samping
     speed: 500,
+    arrows: false,
     slidesToShow: 5,     // Tampilkan 5 slide agar ada 1 di tengah dan 2 di tiap sisi
     // ------------------------------------
 
