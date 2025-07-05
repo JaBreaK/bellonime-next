@@ -5,6 +5,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Sidebar from '@/components/Sidebar';
 import TopBar from '@/components/TopBar';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const exo2 = Exo_2({
   subsets: ['latin'],
@@ -53,6 +55,8 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
             </main>
           </div>
         </ThemeProvider>
+        <Analytics/>
+        <SpeedInsights />
       </body>
     </html>
   );
