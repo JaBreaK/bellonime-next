@@ -1,4 +1,5 @@
 /* src/app/globals.css */
+@import "slick-carousel/slick/slick.css";
 @import "tailwindcss";
 
 /* Tema Default (Light Mode) */
@@ -31,4 +32,24 @@ body {
   /* Bagian ini tidak perlu diubah */
   background-color: rgb(var(--background));
   color: rgb(var(--foreground));
+}
+.slick-track {
+  /* Memberi ruang atas-bawah agar kartu yang membesar tidak kepotong */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.slick-slide .group {
+  /* Transisi untuk semua animasi */
+  transition: all 0.4s ease-in-out;
+  
+  /* Style default untuk slide samping (kecil, redup) */
+  transform: scale(0.85);
+  opacity: 0.6;
+}
+
+/* Style khusus untuk slide yang di TENGAH */
+.slick-center .group {
+  transform: scale(1.1); /* Sedikit lebih besar dari normal untuk efek pop-out */
+  opacity: 1;
 }

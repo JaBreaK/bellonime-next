@@ -3,7 +3,7 @@
 import homeService from '@/services/homeService';
 import AnimeCard from "@/components/AnimeCard";
 
-import Carousel from '@/components/Carousel';
+import SlickCarousel from '@/components/SlickCarousel';
 import SectionHeader from '@/components/SectionHeader'; // <-- Import komponen baru
 import type { Anime } from '@/types'; // <-- Import tipe Anime
 import type { Metadata } from 'next';
@@ -41,7 +41,7 @@ export default async function HomePage() {
     <main className="space-y-16">
 
       {/* Hero Section: Carousel (Full Width) */}
-      {ongoingAnime.length > 0 && <Carousel animes={ongoingAnime} />}
+      {ongoingAnime.length > 0 && <SlickCarousel animes={ongoingAnime} />}
 
       <div className="container mx-auto px-4">
         {/* Section: Rilisan Terbaru */}
