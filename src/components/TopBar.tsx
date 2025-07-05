@@ -25,7 +25,7 @@ export default function TopBar() {
         </div>
         
         {/* Search bar di tengah */}
-        <div className="flex-1 flex justify-center">
+        <div className="flex-2 flex justify-center">
           <SearchInput />
         </div>
         
