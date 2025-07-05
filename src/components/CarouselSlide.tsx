@@ -11,7 +11,7 @@ interface CarouselSlideProps {
 
 export default function CarouselSlide({ anime }: CarouselSlideProps) {
   return (
-    <motion.div whileHover={{ scale: 1.05 }} className="h-100">
+    <motion.div whileHover={{ scale: 1.05 }} className="h-full">
       <Link href={`/anime/${anime.animeId}`} className="block h-full">
         <div className="relative h-full aspect-[2/3] rounded-lg overflow-hidden shadow-lg">
           <Image
